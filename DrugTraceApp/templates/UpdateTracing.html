@@ -1,0 +1,519 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Drug Tracing - Drug Traceability System</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #800000;
+            --primary-dark: #600000;
+            --primary-light: #990000;
+            --accent-color: #FFD700;
+            --bg-light: #f8f8f8;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --error: #dc3545;
+            --success: #28a745;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('{% static "images/pattern.png" %}') repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 1.8em;
+            margin: 0;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            color: var(--accent-color);
+        }
+
+        .nav-container {
+            background: var(--primary-dark);
+            padding: 0.5rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 0.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::before {
+            left: 100%;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feature-image-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 20px;
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-image:hover {
+            transform: scale(1.01);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .page-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 1.5rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        .drug-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1.5rem 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .drug-table th {
+            background: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+            padding: 1rem;
+            text-align: left;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .drug-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+            font-size: 0.95rem;
+        }
+
+        .drug-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .drug-table tr:hover td {
+            background: #fff5f5;
+        }
+
+        .drug-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .status-production { background: #e3f2fd; color: #1976d2; }
+        .status-distribution { background: #f3e5f5; color: #7b1fa2; }
+        .status-warehouse { background: #e8f5e9; color: #388e3c; }
+        .status-retail { background: #fff3e0; color: #f57c00; }
+        .status-sold { background: #fbe9e7; color: #d84315; }
+
+        .update-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .update-btn::before {
+            content: '🔄';
+            font-size: 1rem;
+        }
+
+        .update-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(128, 0, 0, 0.2);
+        }
+
+        .update-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            background: var(--bg-light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11l-4-4h8l-4 4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(128, 0, 0, 0.2);
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 500;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: var(--error);
+            border-left: 4px solid var(--error);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-menu a {
+                text-align: center;
+            }
+
+            .drug-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .drug-table th,
+            .drug-table td {
+                padding: 0.8rem;
+            }
+
+            .feature-image {
+                height: 200px;
+            }
+
+            .update-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Drug Traceability in HealthCare Supply Chain</h1>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <nav class="nav-menu">
+            <a href="{% url 'admin_screen' %}">Dashboard</a>
+            <a href="{% url 'add_product' %}">Add New Drug</a>
+            <a href="{% url 'view_tracing' %}">View Products</a>
+            <a href="{% url 'update_tracing' %}">Update Tracing</a>
+            <a href="{% url 'index' %}">Logout</a>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <div class="feature-image-container">
+            <img src="{% static 'images/investor.jpg' %}" alt="Blockchain in Healthcare" class="feature-image">
+        </div>
+
+        <h2 class="page-title">Update Drug Tracing Details</h2>
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="message {% if message.tags == 'success' %}success-message{% else %}error-message{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if products %}
+        <table class="drug-table">
+            <thead>
+                <tr>
+                    <th>Drug Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Current Status</th>
+                    <th>Update Tracing</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>₹{{ product.price }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>
+                        {% if product.image %}
+                        <img src="/media/{{ product.image }}" alt="{{ product.name }}" class="drug-image">
+                        {% else %}
+                        <span style="color: var(--text-light);">No image</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <span class="status-badge status-{{ product.current_status|lower }}">
+                            {{ product.current_status|default:"Not Available" }}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="{% url 'update_tracing' %}?pname={{ product.name }}" class="update-btn">
+                            Update
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p style="text-align: center; color: var(--text-light); margin: 2rem 0;">No products available.</p>
+        {% endif %}
+
+        {% if selected_product %}
+        <div class="update-form">
+            <h3 class="form-title">Update Tracing for: {{ selected_product.name }}</h3>
+            <form method="post" action="{% url 'update_tracing' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="product_name">Product Name</label>
+                    <input type="text" id="product_name" name="t1" value="{{ selected_product.name }}" readonly class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="trace_type">Tracing Type</label>
+                    <select id="trace_type" name="t2" class="form-control">
+                        <option value="Production">Production</option>
+                        <option value="Distribution">Distribution</option>
+                        <option value="Warehouse">Warehouse</option>
+                        <option value="Retail">Retail</option>
+                        <option value="Sold">Sold</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Details</label>
+                    <textarea id="details" name="t3" class="form-control" rows="4" placeholder="Enter tracing details"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Update Tracing</button>
+            </form>
+        </div>
+        {% endif %}
+    </main>
+</body>
+</html>

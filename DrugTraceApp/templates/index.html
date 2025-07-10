@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Traceability System</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #800000;
+            --primary-dark: #600000;
+            --primary-light: #990000;
+            --accent-color: #FFD700;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('{% static "images/pattern.png" %}') repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .nav-container {
+            background: var(--primary-dark);
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-1px);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .feature-image {
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .abstract {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .abstract h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .abstract p {
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .abstract p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .hero p {
+                font-size: 1.1em;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Drug Traceability in HealthCare Supply Chain</h1>
+            <p>Using Blockchain Technology for Secure and Transparent Drug Supply Chain Management</p>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <nav class="nav-menu">
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register Here</a>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <img src="{% static 'images/investor.jpg' %}" alt="Blockchain in Pharma" class="feature-image">
+        
+        <div class="abstract">
+            <h2>About Drug Traceability</h2>
+            <p>Drug traceability is critical for the health and well-being of patients, businesses, and the government. Patients and other parties involved in the drug supply chain could easily track the location of their medication if it had a dependable traceability mechanism. In fact, governments all around the world are increasingly making drug tracking a vital requirement.</p>
+            
+            <p>Prescription medications must be identified and tracked electronically and interoperably as part of the U.S. Drug Supply Chain Security Act (DSCSA), enacted on November 27, 2013, to ensure their safety in the country's supply chain. About eight years ago in China, the above-mentioned stakeholders were compelled to input the drug information of individual pharmaceutical goods into the official authorized IT system whenever pharmaceuticals entered or exited their warehouses.</p>
+        </div>
+    </main>
+</body>
+</html>
