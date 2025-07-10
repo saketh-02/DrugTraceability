@@ -1,7 +1,7 @@
 # DrugTraceability
 
 <p align="center">
-  <img src="Activity.png" width="400"/>
+  <img src="ProPics/dashboard.png" width="400"/>
 </p>
 
 ![Django](https://img.shields.io/badge/Django-4.2-green?style=flat-square)
@@ -12,7 +12,8 @@
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
-- [Screenshots](#screenshots)
+- [Tech Stack](#tech-stack)
+- [Application Screenshots](#application-screenshots)
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
@@ -36,18 +37,11 @@ DrugTraceability is a blockchain-integrated Django web application designed to e
 
 ---
 
-## 📸 Screenshots
-| Activity Diagram | Class Diagram |
-|------------------|--------------|
-| ![Activity](Activity.png) | ![Class](Class.png) |
-
-| Collaboration Diagram | Data Flow Diagram |
-|-----------------------|------------------|
-| ![Collaboration](Collaboration.png) | ![Data Flow](Data flow.png) |
-
-| Sequence Diagram | Use Case Diagram |
-|------------------|-----------------|
-| ![Sequence](Sequence.png) | ![Use Case](Use case.png) |
+## 🛠️ Tech Stack
+- **Backend:** Django 4.2
+- **Blockchain:** Solidity, Web3.py
+- **Database:** SQLite (default, easy to switch to MySQL/PostgreSQL)
+- **Frontend:** Django Templates, Bootstrap, Crispy Forms
 
 ---
 
@@ -55,15 +49,15 @@ DrugTraceability is a blockchain-integrated Django web application designed to e
 
 | Dashboard | Login Page |
 |-----------|------------|
-| ![Dashboard](media/dashboard.png) | ![Login Page](media/login.png) |
+| ![Dashboard](ProPics/dashboard.png) | ![Login Page](ProPics/login.png) |
 
 | Admin Interface | Add New Drug |
 |-----------------|--------------|
-| ![Admin Interface](media/admin_interface.png) | ![Add New Drug](media/add_drug.png) |
+| ![Admin Interface](ProPics/admin_interface.png) | ![Add New Drug](ProPics/add_drug.png) |
 
 | Drug Details | Client Interface |
 |--------------|-----------------|
-| ![Drug Details](media/drug_details.png) | ![Client Interface](media/client_interface.png) |
+| ![Drug Details](ProPics/drug_details.png) | ![Client Interface](ProPics/client_interface.png) |
 
 **Descriptions:**
 - **Dashboard:** Main landing page showing project title and navigation.
@@ -126,6 +120,7 @@ Visit [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser.
 DrugTraceability/
 ├── DrugTrace/           # Django project settings
 ├── DrugTraceApp/        # Main app logic
+├── ProPics/             # Application screenshots
 ├── media/               # Uploaded images
 ├── venv/                # Virtual environment (do not upload to GitHub)
 ├── requirements.txt     # Python dependencies
