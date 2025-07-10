@@ -1,6 +1,25 @@
 # DrugTraceability
 
-![Logo](https://img.shields.io/badge/Django-4.2-green?style=flat-square) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+<p align="center">
+  <img src="Activity.png" width="400"/>
+</p>
+
+![Django](https://img.shields.io/badge/Django-4.2-green?style=flat-square)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+---
+
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Tips for Viewers](#tips-for-viewers)
+
+---
 
 ## 🚀 Project Overview
 DrugTraceability is a blockchain-integrated Django web application designed to ensure the authenticity and traceability of pharmaceutical drugs throughout the supply chain. It leverages blockchain technology for secure, transparent, and tamper-proof record-keeping.
@@ -17,11 +36,42 @@ DrugTraceability is a blockchain-integrated Django web application designed to e
 
 ---
 
-## 🛠️ Tech Stack
-- **Backend:** Django 4.2
-- **Blockchain:** Solidity, Web3.py
-- **Database:** SQLite (default, easy to switch to MySQL/PostgreSQL)
-- **Frontend:** Django Templates, Bootstrap, Crispy Forms
+## 📸 Screenshots
+| Activity Diagram | Class Diagram |
+|------------------|--------------|
+| ![Activity](Activity.png) | ![Class](Class.png) |
+
+| Collaboration Diagram | Data Flow Diagram |
+|-----------------------|------------------|
+| ![Collaboration](Collaboration.png) | ![Data Flow](Data flow.png) |
+
+| Sequence Diagram | Use Case Diagram |
+|------------------|-----------------|
+| ![Sequence](Sequence.png) | ![Use Case](Use case.png) |
+
+---
+
+## 🖼️ Application Screenshots
+
+| Dashboard | Login Page |
+|-----------|------------|
+| ![Dashboard](media/dashboard.png) | ![Login Page](media/login.png) |
+
+| Admin Interface | Add New Drug |
+|-----------------|--------------|
+| ![Admin Interface](media/admin_interface.png) | ![Add New Drug](media/add_drug.png) |
+
+| Drug Details | Client Interface |
+|--------------|-----------------|
+| ![Drug Details](media/drug_details.png) | ![Client Interface](media/client_interface.png) |
+
+**Descriptions:**
+- **Dashboard:** Main landing page showing project title and navigation.
+- **Login Page:** User authentication form.
+- **Admin Interface:** Admin dashboard with options to add drugs, view products, and update tracing.
+- **Add New Drug:** Form for registering new drugs in the system.
+- **Drug Details:** Table showing all drugs, their status, and tracing history.
+- **Client Interface:** User view for tracking and interacting with the system.
 
 ---
 
@@ -29,7 +79,7 @@ DrugTraceability is a blockchain-integrated Django web application designed to e
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/DrugTraceability.git
+git clone https://github.com/saketh-02/DrugTraceability.git
 cd DrugTraceability
 ```
 
